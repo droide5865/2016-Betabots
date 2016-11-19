@@ -19,9 +19,9 @@ import org.usfirst.frc5865.Robot;
  */
 public class Monter extends Command {
     
-    public Monter() {
-    	requires(Robot.pince);
-    }
+//    public Monter() {
+//    	requires(Robot.pince);
+//    }
     
     // Called just before this Command runs the first time
     protected void initialize() {

@@ -26,7 +26,9 @@ public class OI {
     public Xbox360 pilote;
     public Xbox360 copilote;
     public JoystickButton boutonMonter;
-    public JoystickButton boutonDescendre;    
+    public JoystickButton boutonDescendre;
+    public JoystickButton boutonToggleOuverture;
+
 
     public OI() {
         pilote = new Xbox360(0);
@@ -34,8 +36,12 @@ public class OI {
         
         boutonMonter = new JoystickButton(pilote, Xbox360.RIGHT_BUMPER);
         boutonMonter.whileHeld(new Monter());
+        
         boutonDescendre = new JoystickButton(pilote, Xbox360.LEFT_BUMPER);
         boutonDescendre.whileHeld(new Descendre());      
+        
+        boutonToggleOuverture = new JoystickButton(pilote, Xbox360.ABUTTON);
+        boutonToggleOuverture.whenPressed(new ToggleOuverture());
 
 
         // SmartDashboard Buttons

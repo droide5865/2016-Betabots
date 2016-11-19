@@ -19,9 +19,9 @@ import org.usfirst.frc5865.Robot;
  */
 public class Descendre extends Command {
 	
-    public Descendre() {
-    	requires(Robot.pince);
-    }
+//    public Descendre() {
+//    	requires(Robot.pince);
+//    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
