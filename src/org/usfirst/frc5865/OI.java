@@ -12,6 +12,7 @@
 package org.usfirst.frc5865;
 
 import org.usfirst.frc5865.commands.*;
+import org.usfirst.frc5865.commands.SetHauteurPince.HauteurCmdMode;
 import org.usfirst.frc5865.joysticks.Xbox360;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,19 +36,19 @@ public class OI {
         copilote = new Xbox360(1);
         
         boutonMonter = new JoystickButton(pilote, Xbox360.RIGHT_BUMPER);
-        boutonMonter.whileHeld(new Monter());
+        boutonMonter.whileHeld(new SetHauteurPince(HauteurCmdMode.mMonterManuel));
         
         boutonDescendre = new JoystickButton(pilote, Xbox360.LEFT_BUMPER);
-        boutonDescendre.whileHeld(new Descendre());      
+        boutonDescendre.whileHeld(new SetHauteurPince(HauteurCmdMode.mDescendreManuel));      
         
         boutonToggleOuverture = new JoystickButton(pilote, Xbox360.ABUTTON);
-        boutonToggleOuverture.whenPressed(new ToggleOuverture());
+        boutonToggleOuverture.whenPressed(new SetOuverturePince());
 
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-        SmartDashboard.putData("Lancer", new Descendre());
-        SmartDashboard.putData("Monter", new Monter());
+        SmartDashboard.putData("Descendre", new SetHauteurPince(HauteurCmdMode.mDescendreManuel));
+        SmartDashboard.putData("Monter", new SetHauteurPince(HauteurCmdMode.mMonterManuel));
         SmartDashboard.putData("DriveCommand", new DriveCommand());
     }
 

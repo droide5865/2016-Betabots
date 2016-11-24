@@ -17,29 +17,52 @@ import org.usfirst.frc5865.Robot;
 /**
  *
  */
-public class Descendre extends Command {
+public class SetHauteurPince extends Command {
 	
-//    public Descendre() {
-//    	requires(Robot.pince);
-//    }
-
+	public static enum HauteurCmdMode {
+		mMonterManuel,
+		mDescendreManuel,
+		mMonterMax,
+		mDescendreMax		
+	}
+	
+	private HauteurCmdMode m_mode;
+    
+    public SetHauteurPince(HauteurCmdMode mode) {
+    	requires(Robot.pince);
+    	m_mode = mode;
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
     
     public void start() {
-    	// TODO : verifier si l'appel a super.start() et cancel() a un impact sur l'actuateur
     	super.start();
-    	Robot.pince.monter();
+    	//Robot.pince.monter();
     }
     
     public void cancel() {
-    	Robot.pince.descendre();
-     	super.cancel();
+    	Robot.pince.arreter();
+    	super.cancel();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	switch (m_mode) {
+    		case mMonterManuel:
+    			Robot.pince.monter();
+    			break;
+    		case mDescendreManuel:
+    			Robot.pince.descendre();
+    			break;
+    		case mMonterMax:
+    			// TODO
+    		case mDescendreMax:
+    			// TODO
+			default:
+				break;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
