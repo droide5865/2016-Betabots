@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Pince extends Subsystem {
 	
-	private final double m_Output = 1;
 	private final CANTalon actuatorDrive = RobotMap.pinceCANTalonDrive;
 	private final DoubleSolenoid pinceSolenoid = RobotMap.pinceDoubleSolenoid;
 	
@@ -41,12 +40,12 @@ public class Pince extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     
-    public void monter() {
-    	actuatorDrive.set(m_Output);	
+    public void monter(double valeur) {
+    	actuatorDrive.set(valeur);	
     }
     
-    public void descendre() {
-    	actuatorDrive.set(-m_Output); 	
+    public void descendre(double valeur) {
+    	actuatorDrive.set(-valeur);
     }
     
     public void arreter() {

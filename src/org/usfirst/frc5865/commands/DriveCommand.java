@@ -39,7 +39,7 @@ public class DriveCommand extends Command {
     	double Yspeed = piloteXbox.GetTriggers();
     	double Xspeed = piloteXbox.GetLeftX();
     	
-    	Robot.driveTrain.takeJoystickInput(Yspeed, Xspeed);
+    	Robot.driveTrain.takeJoystickInput(Yspeed/2, Xspeed/2);
     }
 
     // Make this return true when this Command no longer needs to run execute()

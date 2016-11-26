@@ -22,7 +22,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup {
 
     public AutonomousCommand() {
-    	addParallel(new SetOuverturePince(OuvertureCmdMode.mOuvrir));
-    	addParallel(new SetHauteurPince(HauteurCmdMode.mMonterMax));
+    	addSequential(new AutoDrive());
+    	addSequential(new SetOuverturePince(OuvertureCmdMode.mOuvrir));   
+    	
     }
 }
