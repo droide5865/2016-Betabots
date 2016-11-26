@@ -19,6 +19,10 @@ import org.usfirst.frc5865.Robot;
  */
 public class SetHauteurPince extends Command {
 	
+	private double vitesse = 0.1;
+	private double vitesseMax = 0.5;
+	
+	
 	public static enum HauteurCmdMode {
 		mMonterManuel,
 		mDescendreManuel,
@@ -31,6 +35,21 @@ public class SetHauteurPince extends Command {
     public SetHauteurPince(HauteurCmdMode mode) {
     	requires(Robot.pince);
     	m_mode = mode;
+    	
+    	switch (m_mode) {
+			case mMonterManuel:
+				vitesseMax = 0.75;
+				break;
+			case mDescendreManuel:
+				vitesseMax = 0.5;
+				break;
+			case mMonterMax:
+				// TODO
+			case mDescendreMax:
+				// TODO
+			default:
+				break;
+    	}
     }
     
     // Called just before this Command runs the first time
@@ -39,22 +58,26 @@ public class SetHauteurPince extends Command {
     
     public void start() {
     	super.start();
-    	//Robot.pince.monter();
+//    	vitesse = 0.1;
     }
     
     public void cancel() {
     	Robot.pince.arreter();
+    	vitesse = 0.1;
     	super.cancel();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(vitesse< vitesseMax){
+    		vitesse = vitesse + 0.01;
+    	}
     	switch (m_mode) {
     		case mMonterManuel:
-    			Robot.pince.monter();
+    			Robot.pince.monter(vitesse);
     			break;
     		case mDescendreManuel:
-    			Robot.pince.descendre();
+    			Robot.pince.descendre(vitesse);
     			break;
     		case mMonterMax:
     			// TODO
@@ -73,10 +96,13 @@ public class SetHauteurPince extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.pince.arreter();
+    	vitesse = 0.1;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.pince.arreter();
+    	vitesse = 0.1;
     }
 }
