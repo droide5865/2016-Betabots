@@ -11,7 +11,9 @@
 
 package org.usfirst.frc5865.subsystems;
 
+import org.usfirst.frc5865.Const;
 import org.usfirst.frc5865.RobotMap;
+import org.usfirst.frc5865.Utils;
 import org.usfirst.frc5865.commands.*;
 import edu.wpi.first.wpilibj.RobotDrive;
 
@@ -36,14 +38,14 @@ public class DriveTrain extends Subsystem {
     
     // This function determines whether tank drive is enabled and will
     // consequently take joystick input from one or two motors.
-    public void takeJoystickInput(double yspeed, double xspeed) {	
-    	robotDrive.arcadeDrive(yspeed, xspeed, true /*SquareInput*/);
+    public void drive(double yspeed, double xspeed) {	
+    	// TODO essayer la fonction RObotDrive.drive a la place
+    	robotDrive.arcadeDrive(yspeed, Utils.Limit(xspeed + Const.DRIVE_COMPENSATION), true /*SquareInput*/);
     }
     
     public void stop() {
-    	robotDrive.drive(0, 0);
+    	robotDrive.stopMotor();
     }
-    
     
 }
 

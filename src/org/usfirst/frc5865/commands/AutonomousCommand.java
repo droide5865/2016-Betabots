@@ -11,7 +11,7 @@
 
 package org.usfirst.frc5865.commands;
 
-import org.usfirst.frc5865.commands.SetHauteurPince.HauteurCmdMode;
+import org.usfirst.frc5865.commands.AutoDrive.AutoDriveCmdMode;
 import org.usfirst.frc5865.commands.SetOuverturePince.OuvertureCmdMode;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup {
 
     public AutonomousCommand() {
-    	addSequential(new AutoDrive());
+    	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 2 /*Seconds*/));
     	addSequential(new SetOuverturePince(OuvertureCmdMode.mOuvrir));   
     	
     }
