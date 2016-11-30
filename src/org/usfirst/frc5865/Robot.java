@@ -11,7 +11,9 @@
 
 package org.usfirst.frc5865;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -27,18 +29,25 @@ import org.usfirst.frc5865.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
+	CameraServer server;
 	CommandGroup autonomousCommand;
 
     public static OI oi;
     public static DriveTrain driveTrain;
     public static Pince pince;
-
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
     	RobotMap.init();
+    	
+    	// Partir la camera
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        //the camera name (ex "cam0") can be found through the roborio web interface
+        server.startAutomaticCapture("cam0");
     	
     	driveTrain = new DriveTrain();
         pince = new Pince();
@@ -50,7 +59,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        autonomousCommand = new AutonomousCommand(true);
     }
 
     /**
@@ -97,5 +106,16 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    /**
+     * start up automatic capture you should see the video stream from the
+     * webcam in your FRC PC Dashboard.
+     */
+    public void operatorControl() {
+        while (isOperatorControl() && isEnabled()) {
+            /** robot code here! **/
+            Timer.delay(0.005);		// wait for a motor update time
+        }
     }
 }

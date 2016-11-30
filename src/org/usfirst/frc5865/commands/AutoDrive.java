@@ -15,7 +15,8 @@ public class AutoDrive extends Command {
 		mAvancer,
 		mReculer,
 		mTournerDroite,
-		mTournerGauche
+		mTournerGauche,
+		mArret
 	}
 	
 	private AutoDriveCmdMode m_mode;
@@ -35,20 +36,24 @@ public class AutoDrive extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {    	
+    protected void execute() { 
+    	double m_speed = Const.AUTO_MAX_SPEED;
+    	
     	switch (m_mode) {
-    		case mAvancer:
-    			Robot.driveTrain.drive(Const.AUTO_MAX_SPEED, 0);
+    		case mAvancer:    			
+    			Robot.driveTrain.drive(m_speed, 0);
     			break;
     		case mReculer:
-    			Robot.driveTrain.drive(-Const.AUTO_MAX_SPEED, 0);
+    			Robot.driveTrain.drive(-m_speed, 0);
     			break;
     		case mTournerDroite:
-    			Robot.driveTrain.drive(0, Const.AUTO_MAX_SPEED);
+    			Robot.driveTrain.drive(m_speed, 1);
     			break;
     		case mTournerGauche:
-    			Robot.driveTrain.drive(0, -Const.AUTO_MAX_SPEED);
+    			Robot.driveTrain.drive(m_speed, -1);
     			break;
+    		case mArret:
+    			Robot.driveTrain.stop();
 			default:
 				break;
     	}

@@ -36,8 +36,6 @@ public class RobotMap {
     public static CANTalon pinceCANTalonDrive;
 	public static DoubleSolenoid pinceDoubleSolenoid;
 
-	public static Ultrasonic ultraSonicSensor;
-
 	public static void init() {
     	
     	// Declaration des moteur pour la conduite du robot
@@ -76,10 +74,5 @@ public class RobotMap {
         // Declaration du solenoid de la pince
         pinceDoubleSolenoid = new DoubleSolenoid(0, 1);
         LiveWindow.addActuator("Pince", "DoubleSolenoid", pinceDoubleSolenoid);
-        
-        // Declaration de l'oeil du robot
-        ultraSonicSensor = new Ultrasonic(0 /*Ping channel*/, 1 /*Echo channel*/);
-        ultraSonicSensor.setAutomaticMode(true);
-        LiveWindow.addSensor("RobotSensors", "UltraSonic", ultraSonicSensor);
     }
 }

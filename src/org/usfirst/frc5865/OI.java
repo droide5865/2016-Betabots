@@ -46,7 +46,7 @@ public class OI {
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        SmartDashboard.putData("Autonomous Command", new AutonomousCommand(true /*tourner droite*/));
         SmartDashboard.putData("Descendre", new SetHauteurPince(HauteurCmdMode.mDescendreManuel));
         SmartDashboard.putData("Monter", new SetHauteurPince(HauteurCmdMode.mMonterManuel));
         SmartDashboard.putData("DriveCommand", new DriveCommand());

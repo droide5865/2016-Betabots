@@ -11,6 +11,7 @@
 
 package org.usfirst.frc5865.commands;
 
+import org.usfirst.frc5865.Const;
 import org.usfirst.frc5865.commands.AutoDrive.AutoDriveCmdMode;
 import org.usfirst.frc5865.commands.SetOuverturePince.OuvertureCmdMode;
 
@@ -20,10 +21,39 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutonomousCommand extends CommandGroup {
+	
+    public AutonomousCommand(Boolean tournerDroite) {
+    	// 1 - Avancer jusqu'a la fondation
+    	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 
+									Const.AUTO_TIME_START_2_FONDATION));
+				
+		// 2 - Ouvrir la pince
+    	addSequential(new SetOuverturePince(OuvertureCmdMode.mOuvrir));
+    	
+    	// 2.5 - Delai
+    	addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
+    				  				Const.AUTO_TIME_DELAI));
 
-    public AutonomousCommand() {
-    	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 2 /*Seconds*/));
-    	addSequential(new SetOuverturePince(OuvertureCmdMode.mOuvrir));   
+    	// 3 - Faire le chemin inverse a moitie
+    	addSequential(new AutoDrive(AutoDriveCmdMode.mReculer, 
+									Const.AUTO_TIME_FONDATION_2_CENTRE));
+    	
+		// 3.5 - Delai
+		addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
+									Const.AUTO_TIME_DELAI));
+		
+    	// 4 - Tourner de 90 degres vers le centre du terrain
+    	addSequential(new AutoDrive(tournerDroite ? AutoDriveCmdMode.mTournerDroite : AutoDriveCmdMode.mTournerGauche, 
+    								Const.AUTO_TIME_CENTRE_ROTATION));
+    	
+		// 4.5 - Delai
+		addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
+									Const.AUTO_TIME_DELAI));
+    	
+    	// 5 - Avancer jusqu'au point final
+    	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 
+    								Const.AUTO_TIME_CENTRE_2_POINT_FINAL));
+    	
     	
     }
 }

@@ -12,6 +12,8 @@
 package org.usfirst.frc5865.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc5865.Const;
 import org.usfirst.frc5865.Robot;
 
 /**
@@ -38,10 +40,10 @@ public class SetHauteurPince extends Command {
     	
     	switch (m_mode) {
 			case mMonterManuel:
-				vitesseMax = 0.75;
+				vitesseMax = Const.ELEVATOR_UP_MAX_SPEED;
 				break;
 			case mDescendreManuel:
-				vitesseMax = 0.5;
+				vitesseMax = Const.ELEVATOR_DOWN_MAX_SPEED;
 				break;
 			case mMonterMax:
 				// TODO

@@ -7,13 +7,14 @@ public class Utils {
 	}
     public static double Limit(double num, double max, double min) {
         if (max < min)
-        	throw new IllegalArgumentException("Le minimum doit être plus petit que le maximum");
+        	throw new IllegalArgumentException("Le minimum doit etre plus petit que le maximum");
     	
-    	if (num > max) {
-            num = 1;
-        } else if (num < min) {
-            num = -1;
-        }
+    	if (num > max)
+    		num = max;
+        
+        if (num < min)
+            num = min;
+        
         return num;
     }
 }

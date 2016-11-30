@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc5865.Const;
 import org.usfirst.frc5865.Robot;
-import org.usfirst.frc5865.Utils;
 import org.usfirst.frc5865.joysticks.Xbox360;
 
 /**
@@ -42,7 +41,7 @@ public class DriveCommand extends Command {
     	double Yspeed = piloteXbox.GetTriggers();
     	double Xspeed = piloteXbox.GetLeftX();
     	
-    	Robot.driveTrain.drive(Utils.Limit(Yspeed, Const.TELEOP_MAX_SPEED, Const.TELEOP_MAX_SPEED), Xspeed);
+    	Robot.driveTrain.drive(Yspeed * Const.TELEOP_MAX_SPEED, Xspeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

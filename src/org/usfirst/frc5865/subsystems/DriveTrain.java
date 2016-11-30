@@ -40,7 +40,13 @@ public class DriveTrain extends Subsystem {
     // consequently take joystick input from one or two motors.
     public void drive(double yspeed, double xspeed) {	
     	// TODO essayer la fonction RObotDrive.drive a la place
-    	robotDrive.arcadeDrive(yspeed, Utils.Limit(xspeed + Const.DRIVE_COMPENSATION), true /*SquareInput*/);
+    	//robotDrive.arcadeDrive(yspeed, Utils.Limit(xspeed + Const.DRIVE_COMPENSATION), true /*SquareInput*/);
+    	
+    	double curve = xspeed;
+    	if (yspeed > 0)
+    		curve = 0 - xspeed;
+    		
+    	robotDrive.drive(yspeed, Utils.Limit(curve + Const.DRIVE_COMPENSATION));
     }
     
     public void stop() {
