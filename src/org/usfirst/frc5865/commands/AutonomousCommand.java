@@ -25,34 +25,34 @@ public class AutonomousCommand extends CommandGroup {
     public AutonomousCommand(Boolean tournerDroite) {
     	// 1 - Avancer jusqu'a la fondation
     	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 
-									Const.AUTO_TIME_START_2_FONDATION));
+									Const.getValue(Const.AUTO_TIME_START_2_FONDATION_ID)));
 				
 		// 2 - Ouvrir la pince
     	addSequential(new SetOuverturePince(OuvertureCmdMode.mOuvrir));
     	
     	// 2.5 - Delai
     	addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
-    				  				Const.AUTO_TIME_DELAI));
+    				  				Const.getValue(Const.AUTO_TIME_DELAI_ID)));
 
     	// 3 - Faire le chemin inverse a moitie
     	addSequential(new AutoDrive(AutoDriveCmdMode.mReculer, 
-									Const.AUTO_TIME_FONDATION_2_CENTRE));
+									Const.getValue(Const.AUTO_TIME_FONDATION_2_CENTRE_ID)));
     	
 		// 3.5 - Delai
 		addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
-									Const.AUTO_TIME_DELAI));
+									Const.getValue(Const.AUTO_TIME_DELAI_ID)));
 		
     	// 4 - Tourner de 90 degres vers le centre du terrain
     	addSequential(new AutoDrive(tournerDroite ? AutoDriveCmdMode.mTournerDroite : AutoDriveCmdMode.mTournerGauche, 
-    								Const.AUTO_TIME_CENTRE_ROTATION));
+    								Const.getValue(Const.AUTO_TIME_CENTRE_ROTATION_ID)));
     	
 		// 4.5 - Delai
 		addSequential(new AutoDrive(AutoDriveCmdMode.mArret,
-									Const.AUTO_TIME_DELAI));
+									Const.getValue(Const.AUTO_TIME_DELAI_ID)));
     	
     	// 5 - Avancer jusqu'au point final
     	addSequential(new AutoDrive(AutoDriveCmdMode.mAvancer, 
-    								Const.AUTO_TIME_CENTRE_2_POINT_FINAL));
+    								Const.getValue(Const.AUTO_TIME_CENTRE_2_POINT_FINAL_ID)));
     	
     	
     }

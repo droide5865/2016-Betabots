@@ -37,7 +37,7 @@ public class AutoDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	double m_speed = Const.AUTO_MAX_SPEED;
+    	double m_speed = Const.getValue(Const.AUTO_MAX_SPEED_ID);
     	
     	switch (m_mode) {
     		case mAvancer:    			

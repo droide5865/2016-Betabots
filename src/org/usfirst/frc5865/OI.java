@@ -15,7 +15,6 @@ import org.usfirst.frc5865.commands.*;
 import org.usfirst.frc5865.commands.SetHauteurPince.HauteurCmdMode;
 import org.usfirst.frc5865.joysticks.Xbox360;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.buttons.*;
 
 
@@ -46,10 +45,10 @@ public class OI {
 
 
         // SmartDashboard Buttons
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand(true /*tourner droite*/));
-        SmartDashboard.putData("Descendre", new SetHauteurPince(HauteurCmdMode.mDescendreManuel));
-        SmartDashboard.putData("Monter", new SetHauteurPince(HauteurCmdMode.mMonterManuel));
-        SmartDashboard.putData("DriveCommand", new DriveCommand());
+//        SmartDashboard.putData("Autonomous Command", new AutonomousCommand(true /*tourner droite*/));
+//        SmartDashboard.putData("Descendre", new SetHauteurPince(HauteurCmdMode.mDescendreManuel));
+//        SmartDashboard.putData("Monter", new SetHauteurPince(HauteurCmdMode.mMonterManuel));
+//        SmartDashboard.putData("DriveCommand", new DriveCommand());
     }
 
     public Xbox360 getPilote() {

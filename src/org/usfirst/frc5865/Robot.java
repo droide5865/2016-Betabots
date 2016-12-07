@@ -31,6 +31,7 @@ public class Robot extends IterativeRobot {
 
 	CameraServer server;
 	CommandGroup autonomousCommand;
+//	SendableChooser chooser;
 
     public static OI oi;
     public static DriveTrain driveTrain;
@@ -59,7 +60,12 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand(true);
+//        chooser = new SendableChooser();
+//        chooser.addDefault("Turn Right", new AutonomousCommand(true)); 
+//        chooser.addObject("Turn Left", new AutonomousCommand(false));
+//        SmartDashboard.putData("Auto mode", chooser);
+//        Const.initSmartDashboard();
+        autonomousCommand = new AutonomousCommand(false /*Turn right?*/);
     }
 
     /**
@@ -75,6 +81,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+//    	autonomousCommand = (CommandGroup) chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
